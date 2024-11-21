@@ -2,10 +2,7 @@ package pl.kurs.zad1.services;
 
 import org.junit.Before;
 import org.junit.Test;
-import pl.kurs.zad1.models.Circle;
-import pl.kurs.zad1.models.Rectangle;
-import pl.kurs.zad1.models.Shape;
-import pl.kurs.zad1.models.Square;
+import pl.kurs.zad1.models.*;
 
 import java.util.Map;
 
@@ -39,10 +36,19 @@ public class ShapeFactoryTest {
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void shouldReturnUnmodifiableMap() {
+    public void shouldReturnUnmodifiableSquaresMap() {
         Map<Double, Square> createdSquares = shapeFactory.getCreatedSquares();
         createdSquares.put(222.0, shapeFactory.createSquare(222));
-
+    }
+    @Test(expected = UnsupportedOperationException.class)
+    public void shouldReturnUnmodifiableCirclesMap() {
+        Map<Double, Circle> createdCircles = shapeFactory.getCreatedCircles();
+        createdCircles.put(222.0, shapeFactory.createCircle(22));
+    }
+    @Test(expected = UnsupportedOperationException.class)
+    public void shouldReturnUnmodifiableRectanglesMap() {
+        Map<RectangleDimensions, Rectangle> createdRectangles = shapeFactory.getCreatedRectangles();
+        createdRectangles.put(new RectangleDimensions(21,50), shapeFactory.createRectangle(21,50));
     }
 
     @Test

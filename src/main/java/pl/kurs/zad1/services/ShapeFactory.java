@@ -4,14 +4,15 @@ import pl.kurs.zad1.models.*;
 
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+
 
 public class ShapeFactory implements IShapeFactory {
 
-    private final Map<Double, Circle> EXISTING_CIRCLES = new ConcurrentHashMap<>();
-    private final Map<Double, Square> EXISTING_SQUARES = new ConcurrentHashMap<>();
-    private final Map<RectangleDimensions, Rectangle> EXISTING_RECTANGLES = new ConcurrentHashMap<>();
+    private final Map<Double, Circle> EXISTING_CIRCLES = new HashMap<>();
+    private final Map<Double, Square> EXISTING_SQUARES = new HashMap<>();
+    private final Map<RectangleDimensions, Rectangle> EXISTING_RECTANGLES = new HashMap<>();
 
     public Map<Double, Circle> getCreatedCircles() {
         return Collections.unmodifiableMap(EXISTING_CIRCLES);

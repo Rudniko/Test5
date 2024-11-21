@@ -1,16 +1,21 @@
 package pl.kurs.zad1.models;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Objects;
 
-public class Circle implements Shape {
+public class Circle extends Shape {
 
+    @JsonProperty
     private double radius;
 
     private Circle(double radius) {
         this.radius = radius;
     }
 
-    public static Circle create(double radius) {
+    @JsonCreator
+    public static Circle create(@JsonProperty("radius") double radius) {
         return new Circle(radius);
     }
 
@@ -27,8 +32,6 @@ public class Circle implements Shape {
     public double getRadius() {
         return radius;
     }
-
-
 
     @Override
     public boolean equals(Object o) {

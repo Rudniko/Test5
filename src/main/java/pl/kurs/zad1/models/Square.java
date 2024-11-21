@@ -1,16 +1,21 @@
 package pl.kurs.zad1.models;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Objects;
 
-public class Square implements Shape {
+public class Square extends Shape {
 
+    @JsonProperty
     private double side;
 
     private Square(double side) {
         this.side = side;
     }
 
-    public static Square create(double side) {
+    @JsonCreator
+    public static Square create(@JsonProperty("side") double side) {
         return new Square(side);
     }
 
@@ -23,6 +28,7 @@ public class Square implements Shape {
     public double calculatePerimeter() {
         return side * 4;
     }
+
 
     public double getSide() {
         return side;

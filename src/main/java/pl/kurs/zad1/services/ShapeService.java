@@ -13,10 +13,9 @@ public class ShapeService implements IShapeService {
 
     private final ObjectMapper objectMapper;
 
-    public ShapeService(IShapeFactory shapeFactory) {
-        this.objectMapper = ObjectMapperHolder.createObjectMapper(shapeFactory);
+    public ShapeService(ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper;
     }
-
 
     @Override
     public Shape findShapeWithTheBiggestArea(List<Shape> shapes) {

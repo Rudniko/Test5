@@ -1,5 +1,6 @@
 package pl.kurs.zad1;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import pl.kurs.zad1.models.*;
 import pl.kurs.zad1.services.IShapeService;
 import pl.kurs.zad1.services.ShapeFactory;
@@ -12,8 +13,9 @@ import java.util.List;
 public class App {
     public static void main(String[] args) throws IOException {
 
+        ObjectMapper objectMapper = ObjectMapperHolder.createObjectMapper();
+        IShapeService shapeService = new ShapeService(objectMapper);
         IShapeFactory shapeFactory = new ShapeFactory();
-        IShapeService shapeService = new ShapeService(shapeFactory);
 
 
         Circle circle = shapeFactory.createCircle(10);

@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 public class CurrencyRatesHolder {
 
-    private final Map<CurrencyPair, Double> RATES = new ConcurrentHashMap<>();
+    private volatile Map<CurrencyPair, Double> RATES = new ConcurrentHashMap<>();
     private final ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
 
     private IRateService rateService;
@@ -33,7 +33,7 @@ public class CurrencyRatesHolder {
 
     private void updateCache() {
         Map<CurrencyPair, Double> currenciesWithRates = rateService.getCurrenciesWithRates();
-        RATES.putAll(currenciesWithRates);
+        RATES = new ConcurrentHashMap<>(currenciesWithRates);
     }
 
     public void refreshRates(int secondsBeforeRefresh) {

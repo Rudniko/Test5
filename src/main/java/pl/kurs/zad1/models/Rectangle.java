@@ -1,10 +1,15 @@
 package pl.kurs.zad1.models;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Objects;
 
-public class Rectangle implements Shape {
+public class Rectangle extends Shape {
 
+    @JsonProperty
     private double width;
+    @JsonProperty
     private double height;
 
     private Rectangle(double width, double height) {
@@ -12,10 +17,10 @@ public class Rectangle implements Shape {
         this.height = height;
     }
 
-    public static Rectangle create(double width, double height) {
+    @JsonCreator
+    public static Rectangle create(@JsonProperty("width") double width, @JsonProperty("height") double height) {
         return new Rectangle(width, height);
     }
-
 
     @Override
     public double calculateArea() {
@@ -27,9 +32,11 @@ public class Rectangle implements Shape {
         return 2 * width + 2 * height;
     }
 
+
     public double getWidth() {
         return width;
     }
+
 
     public double getHeight() {
         return height;

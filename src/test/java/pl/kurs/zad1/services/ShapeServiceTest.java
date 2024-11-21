@@ -27,11 +27,11 @@ public class ShapeServiceTest {
     @Before
     public void init() {
 
-        ShapeFactory shapeFactory = new ShapeFactory();
-        shapeService = new ShapeService(shapeFactory);
+        shapeService = new ShapeService(ObjectMapperHolder.createObjectMapper());
 
         testFilePath = "src/test/java/pl/kurs/zad1/services/testShapes.json";
 
+        ShapeFactory shapeFactory = new ShapeFactory();
         shapes = List.of(
                 shapeFactory.createCircle(10),
                 shapeFactory.createCircle(20),
