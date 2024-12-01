@@ -1,4 +1,7 @@
-package pl.kurs.zad2;
+package pl.kurs.zad2.services;
+
+import pl.kurs.zad2.exceptions.InvalidAmountException;
+import pl.kurs.zad2.exceptions.InvalidCurrencyException;
 
 public class SimpleCurrencyService implements ICurrencyService {
 
@@ -11,10 +14,10 @@ public class SimpleCurrencyService implements ICurrencyService {
     @Override
     public double exchange(String currencyFrom, String currencyTo, double amount) {
         if (currencyFrom == null || currencyTo == null) {
-            throw new IllegalArgumentException("Null argument");
+            throw new InvalidCurrencyException("Null currency");
         }
-        if (amount < 0) {
-            throw new IllegalArgumentException("Amount should not be less than 0");
+        if (amount <= 0) {
+            throw new InvalidAmountException("Amount should be greater than 0");
         }
         double rate = currencyRatesHolder.getRate(currencyFrom, currencyTo);
         return amount * rate;

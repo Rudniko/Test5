@@ -1,10 +1,10 @@
-package pl.kurs.zad2;
+package pl.kurs.zad2.models;
 
 import java.util.Objects;
 
 public class CurrencyPair {
-    private String currencyFrom;
-    private String currencyTo;
+    private final String currencyFrom;
+    private final String currencyTo;
 
 
     public CurrencyPair(String currencyFrom, String currencyTo) {
